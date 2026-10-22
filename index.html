@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>闲物集 - 让闲置流转起来</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF6B35',
+            secondary: '#2EC4B6',
+            dark: '#1A1A2E',
+            light: '#F8F9FA',
+            soft: '#FFF5F0'
+          },
+          fontFamily: {
+            sans: ['\"Noto Sans SC\"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-light font-sans text-dark antialiased">
+  <!-- 顶部导航 -->
+  <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition">
+            <i class="fas fa-recycle text-lg"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight">闲物集</span>
+        </a>
+
+        <!-- 搜索框 (桌面) -->
+        <div class="hidden md:flex flex-1 max-w-xl mx-8">
+          <div class="relative w-full">
+            <input id="searchInput" type="text" placeholder="搜索闲置好物..." 
+              class="w-full pl-11 pr-4 py-2.5 rounded-full border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition text-sm">
+            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          </div>
+        </div>
+
+        <!-- 右侧按钮 -->
+        <div class="flex items-center gap-3">
+          <button id="mobileSearchBtn" class="md:hidden p-2 text-gray-600 hover:text-primary">
+            <i class="fas fa-search text-lg"></i>
+          </button>
+          <a href="sell.html" class="hidden sm:flex items-center gap-2 bg-primary hover:bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-md hover:shadow-lg transition">
+            <i class="fas fa-plus"></i>
+            <span>发布闲置</span>
+          </a>
+          <button id="cartBtn" class="relative p-2 text-gray-600 hover:text-primary transition">
+            <i class="fas fa-shopping-bag text-lg"></i>
+            <span id="cartCount" class="absolute -top-0.5 -right-0.5 w-5 h-5 bg-primary text-white text-xs rounded-full flex items-center justify-center font-medium hidden">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 移动端搜索 -->
+      <div id="mobileSearch" class="md:hidden pb-3 hidden">
+        <div class="relative">
+          <input id="mobileSearchInput" type="text" placeholder="搜索闲置好物..." 
+            class="w-full pl-11 pr-4 py-2.5 rounded-full border border-gray-200 bg-gray-50 focus:bg-white focus:border-primary outline-none text-sm">
+          <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主内容 -->
+  <main>
+    <!-- Hero 区域 -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-soft via-white to-teal-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
+              <i class="fas fa-leaf"></i>
+              <span>绿色循环 · 闲置新生</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
+              让闲置<span class="text-primary">流转</span>起来<br>
+              <span class="text-secondary">换取新可能</span>
+            </h1>
+            <p class="text-gray-600 text-lg mb-8 max-w-md">
+              二手好物、闲置神器，安全交易，轻松变现。在这里，每一件闲置都能找到新主人。
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a href="#products" class="inline-flex items-center gap-2 bg-primary hover:bg-orange-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition">
+                开始淘宝
+                <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="sell.html" class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-dark border border-gray-200 px-6 py-3 rounded-full font-medium transition">
+                <i class="fas fa-camera"></i>
+                发布闲置
+              </a>
+            </div>
+          </div>
+          <div class="relative hidden md:block">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-4">
+                <div class="bg-white rounded-2xl p-4 shadow-lg transform rotate-2 hover:rotate-0 transition">
+                  <div class="aspect-square bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl flex items-center justify-center text-4xl mb-3">📱</div>
+                  <p class="font-medium text-sm">iPhone 13</p>
+                  <p class="text-primary font-bold">¥2,899</p>
+                </div>
+                <div class="bg-white rounded-2xl p-4 shadow-lg transform -rotate-1 hover:rotate-0 transition">
+                  <div class="aspect-square bg-gradient-to-br from-teal-100 to-teal-50 rounded-xl flex items-center justify-center text-4xl mb-3">🎧</div>
+                  <p class="font-medium text-sm">索尼降噪耳机</p>
+                  <p class="text-primary font-bold">¥680</p>
+                </div>
+              </div>
+              <div class="space-y-4 pt-8">
+                <div class="bg-white rounded-2xl p-4 shadow-lg transform -rotate-2 hover:rotate-0 transition">
+                  <div class="aspect-square bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center text-4xl mb-3">💻</div>
+                  <p class="font-medium text-sm">MacBook Air</p>
+                  <p class="text-primary font-bold">¥5,200</p>
+                </div>
+                <div class="bg-white rounded-2xl p-4 shadow-lg transform rotate-1 hover:rotate-0 transition">
+                  <div class="aspect-square bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl flex items-center justify-center text-4xl mb-3">📚</div>
+                  <p class="font-medium text-sm">考研资料全套</p>
+                  <p class="text-primary font-bold">¥120</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 分类导航 -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+      <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+        <button class="category-btn active flex-shrink-0 flex flex-col items-center gap-2 px-5 py-3 rounded-2xl bg-primary text-white shadow-md" data-category="all">
+          <i class="fas fa-th-large text-lg"></i>
+          <span class="text-sm font-medium">全部</span>
+        </button>
+        <button class="category-btn flex-shrink-0 flex flex-col items-center gap-2 px-5 py-3 rounded-2xl bg-white text-gray-600 hover:bg-soft transition border border-gray-100" data-category="数码">
+          <i class="fas fa-mobile-alt text-lg"></i>
+          <span class="text-sm font-medium">数码</span>
+        </button>
+        <button class="category-btn flex-shrink-0 flex flex-col items-center gap-2 px-5 py-3 rounded-2xl bg-white text-gray-600 hover:bg-soft transition border border-gray-100" data-category="家电">
+          <i class="fas fa-tv text-lg"></i>
+          <span class="text-sm font-medium">家电</span>
+        </button>
+        <button class="category-btn flex-shrink-0 flex flex-col items-center gap-2 px-5 py-3 rounded-2xl bg-white text-gray-600 hover:bg-soft transition border border-gray-100" data-category="服饰">
+          <i class="fas fa-tshirt text-lg"></i>
+          <span class="text-sm font-medium">服饰</span>
+        </button>
+        <button class="category-btn flex-shrink-0 flex flex-col items-center gap-2 px-5 py-3 rounded-2xl bg-white text-gray-600 hover:bg-soft transition border border-gray-100" data-category="图书">
+          <i class="fas fa-book text-lg"></i>
+          <span class="text-sm font-medium">图书</span>
+        </button>
+        <button class="category-btn flex-shrink-0 flex flex-col items-center gap-2 px-5 py-3 rounded-2xl bg-white text-gray-600 hover:bg-soft transition border border-gray-100" data-category="家具">
+          <i class="fas fa-couch text-lg"></i>
+          <span class="text-sm font-medium">家具</span>
+        </button>
+        <button class="category-btn flex-shrink-0 flex flex-col items-center gap-2 px-5 py-3 rounded-2xl bg-white text-gray-600 hover:bg-soft transition border border-gray-100" data-category="运动">
+          <i class="fas fa-dumbbell text-lg"></i>
+          <span class="text-sm font-medium">运动</span>
+        </button>
+        <button class="category-btn flex-shrink-0 flex flex-col items-center gap-2 px-5 py-3 rounded-2xl bg-white text-gray-600 hover:bg-soft transition border border-gray-100" data-category="其他">
+          <i class="fas fa-box text-lg"></i>
+          <span class="text-sm font-medium">其他</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 商品列表 -->
+    <section id="products" class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold">精选闲置</h2>
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          <span id="productCount">0</span> 件好物
+        </div>
+      </div>
+
+      <!-- 商品网格 -->
+      <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <!-- 商品卡片由 JS 渲染 -->
+      </div>
+
+      <!-- 空状态 -->
+      <div id="emptyState" class="hidden text-center py-20">
+        <div class="text-6xl mb-4">🔍</div>
+        <p class="text-gray-500 text-lg">没有找到相关闲置</p>
+        <p class="text-gray-400 text-sm mt-2">换个关键词试试吧</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="bg-dark text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+              <i class="fas fa-recycle"></i>
+            </div>
+            <span class="text-lg font-bold">闲物集</span>
+          </div>
+          <p class="text-gray-400 text-sm max-w-sm">
+            让闲置流转起来，让资源重新发光。安全、便捷的二手交易社区，连接每一个有故事的物品。
+          </p>
+        </div>
+        <div>
+          <h4 class="font-medium mb-3">快速链接</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="index.html" class="hover:text-white transition">首页</a></li>
+            <li><a href="sell.html" class="hover:text-white transition">发布闲置</a></li>
+            <li><a href="#" class="hover:text-white transition">交易保障</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-medium mb-3">联系我们</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><i class="fas fa-envelope mr-2"></i> hello@xianwuji.com</li>
+            <li><i class="fas fa-map-marker-alt mr-2"></i> 中国 · 互联网</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-500">
+        © 2025 闲物集 · 让闲置流转起来
+      </div>
+    </div>
+  </footer>
+
+  <!-- 商品详情弹窗 -->
+  <div id="itemModal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="modalBackdrop"></div>
+    <div class="absolute inset-x-0 bottom-0 md:inset-0 md:flex md:items-center md:justify-center p-0 md:p-4">
+      <div class="bg-white rounded-t-3xl md:rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
+        <div class="sticky top-0 bg-white/95 backdrop-blur z-10 flex items-center justify-between p-4 border-b">
+          <h3 class="font-bold text-lg">商品详情</h3>
+          <button id="closeModal" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div id="modalContent" class="p-4">
+          <!-- 内容由 JS 填充 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 购物车侧边栏 -->
+  <div id="cartSidebar" class="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300">
+    <div class="flex flex-col h-full">
+      <div class="flex items-center justify-between p-4 border-b">
+        <h3 class="font-bold text-lg">我想要的</h3>
+        <button id="closeCart" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-3">
+        <!-- 购物车商品 -->
+      </div>
+      <div class="p-4 border-t">
+        <div class="flex justify-between mb-4">
+          <span class="text-gray-600">合计</span>
+          <span id="cartTotal" class="text-xl font-bold text-primary">¥0</span>
+        </div>
+        <button class="w-full bg-primary hover:bg-orange-600 text-white py-3 rounded-full font-medium transition">
+          联系卖家沟通
+        </button>
+        <p class="text-xs text-gray-400 text-center mt-2">本站为演示，实际交易请线下确认</p>
+      </div>
+    </div>
+  </div>
+  <div id="cartOverlay" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+
+  <!-- 移动端底部导航 -->
+  <nav class="md:hidden fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 z-40 safe-bottom">
+    <div class="flex justify-around py-2">
+      <a href="index.html" class="flex flex-col items-center gap-1 text-primary px-4 py-1">
+        <i class="fas fa-home text-lg"></i>
+        <span class="text-xs">首页</span>
+      </a>
+      <a href="sell.html" class="flex flex-col items-center gap-1 text-gray-500 px-4 py-1">
+        <i class="fas fa-plus-circle text-lg"></i>
+        <span class="text-xs">发布</span>
+      </a>
+      <button id="mobileCartBtn" class="flex flex-col items-center gap-1 text-gray-500 px-4 py-1 relative">
+        <i class="fas fa-shopping-bag text-lg"></i>
+        <span class="text-xs">想要</span>
+      </button>
+    </div>
+  </nav>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
